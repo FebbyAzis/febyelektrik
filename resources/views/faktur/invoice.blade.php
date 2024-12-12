@@ -194,14 +194,20 @@
             <div class="col-md-12">
                 <input type="hidden" name="faktur_id" value="{{$faktur->id}}">
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Barang</label>
-                    <select class="form-control" id="exampleFormControlSelect1" name="data_barang_id" required>
+                    <label for="barang">Barang</label>
+                    <select class="form-control" id="barang" name="data_barang_id" required>
                         <option value="">-- Pilih Barang --</option>
                         @foreach($barang as $b)
-                            <option value="{{ $b->id }}">{{ $b->nama_barang }} - Rp.{{ number_format($b->harga_jual ,0, ',', '.') }}/{{ $b->qty }}</option>
+                            <option value="{{ $b->id }}" data-harga_jual="{{ $b->harga_jual }}">{{ $b->nama_barang }} - Rp.{{ number_format($b->harga_jual ,0, ',', '.') }}/{{ $b->qty }}</option>
                         @endforeach
                     </select>
+        
                   </div>
+
+                  <div class="form-group">
+                    <label class="form-label" for="harga_jual">Harga</label>
+                    <input type="text" class="form-control" id="harga_jual" name="kuantitas" placeholder="..." required>
+                </div>
                 <div class="form-group">
                     <label class="form-label" for="exampleInputText1">Kuantitas</label>
                     <input type="text" class="form-control" id="exampleInputText1" name="kuantitas" placeholder="..." required>
@@ -297,6 +303,26 @@
 </div>
 </form> 
 @endforeach
+
+<script>
+  $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+</script>
+
+<script>
+  $(document).ready(function() {
+      $('#barang').on('change', function() {
+          var harga_jual = $(this).find(':selected').data('harga_jual');
+          
+          if (harga_jual) {
+              $('#harga_jual').val(harga_jual); // Mengisi harga berdasarkan produk yang dipilih
+          } else {
+              $('#harga_jual').val(''); // Kosongkan harga jika tidak ada barang yang dipilih
+          }
+      });
+  });
+</script>
 
 <script type="text/javascript">
     var harga_beli = document.getElementById('harga_beli');

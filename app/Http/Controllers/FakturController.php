@@ -73,4 +73,16 @@ class FakturController extends Controller
         $barang = Barang::all();
         return view('faktur.cetak_invoice', compact('faktur', 'invoice', 'barang'));
     }
+
+    public function search(Request $request)
+    {
+        // Cek apakah ada input pencarian
+        if ($request->has('query')) {
+            $query = $request->input('query');
+            $products = Barang::where('nama_barang', 'like', "%{$query}%")->get();
+            return response()->json($products);
+        }
+        
+        return response()->json([]);
+    }
 }
