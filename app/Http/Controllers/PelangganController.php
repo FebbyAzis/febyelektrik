@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Pelanggan;
+use App\Models\Faktur;
+use App\Models\Invoice;
 
 class PelangganController extends Controller
 {
@@ -43,5 +45,19 @@ class PelangganController extends Controller
     {
         $kategori_barang = Pelanggan::where('id', $id)->delete();
         return redirect()->back()->with('Successss', 'Data berhasil dihapus!');
+    }
+
+    public function detail_pelanggan($id)
+    {
+        $detail = Pelanggan::find($id);
+        $faktur = Faktur::where('id', $id)->get();
+        return view('data_pelanggan.detail_pelanggan', compact('detail', 'faktur'));
+    }
+
+    public function detail_faktur_pelanggan($id)
+    {
+        $faktur = Faktur::find($id);
+        $df = Invoice::where('faktur_id', $id)->get();
+        return view('data_pelanggan.detail_faktur_pelanggan', compact('df', 'faktur'));
     }
 }

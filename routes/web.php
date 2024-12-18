@@ -33,6 +33,8 @@ Route::get('/data-pelanggan', [PelangganController::class, 'data_pelanggan']);
 Route::post('/tambah-pelanggan', [PelangganController::class, 'tambah_pelanggan']);
 Route::put('/edit-pelanggan/{id}', [PelangganController::class, 'edit_pelanggan']);
 Route::delete('/hapus-pelanggan/{id}', [PelangganController::class, 'hapus_pelanggan']);
+Route::get('/detail-pelanggan/{id}', [PelangganController::class, 'detail_pelanggan']);
+Route::get('/detail-faktur-pelanggan/{id}', [PelangganController::class, 'detail_faktur_pelanggan']);
 
 Route::get('/faktur', [FakturController::class, 'faktur']);
 Route::post('/tambah-faktur', [FakturController::class, 'tambah_faktur']);

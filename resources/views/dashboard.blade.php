@@ -81,6 +81,25 @@
             </div>
         </div>
 
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Grafik Data Pemasukan dan Pengeluaran</h6>
+            </div>
+            <div class="card-body">
+                <div class="col-sm-12 py-3">
+                    <form action="{{ url('/') }}" method="GET" class="mb-4">
+                        <label for="year" class="form-label">Pilih Tahun:</label>
+                        <select name="year" id="year" class="form-select" onchange="this.form.submit()">
+                            @for ($i = date('Y'); $i >= date('Y') - 5; $i--)
+                                <option value="{{ $i }}" {{ $i == $year ? 'selected' : '' }}>{{ $i }}</option>
+                            @endfor
+                        </select>
+                    </form>
+                
+                    <canvas id="invoiceChart"></canvas>
+                </div>
+            </div>
+        </div>
     <!-- Content Row -->
 
 
@@ -88,7 +107,10 @@
 </div>
 <!-- /.container-fluid -->
 
+@endsection
 
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script type="text/javascript">
     var harga = document.getElementById('harga');
@@ -114,4 +136,69 @@
     }
     </script>
 
+<script>
+    const chartData = @json($chartData);
+
+    const labels = chartData.map(data => {
+        const monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        return monthNames[data.month - 1];
+    });
+
+    const pemasukanData = chartData.map(data => parseFloat(data.pemasukan));
+    const pengeluaranData = chartData.map(data => parseFloat(data.pengeluaran));
+
+    const ctx = document.getElementById('invoiceChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Pemasukan',
+                    data: pemasukanData,
+                    backgroundColor: 'rgba(0, 0, 255, 0.2)',
+                    borderColor: 'rgba(0, 0, 139, 1)',
+                    borderWidth: 1,
+                },
+                {
+                    label: 'Pengeluaran',
+                    data: pengeluaranData,
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                    borderColor: 'rgba(139, 0, 0, 1)',
+                    borderWidth: 1,
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Bulan',
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Jumlah (Rp)',
+                    },
+                    beginAtZero: true,
+                }
+            }
+        }
+    });
+</script>
+@endsection
+
+@section('css')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 @endsection

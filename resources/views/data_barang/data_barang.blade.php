@@ -441,44 +441,53 @@
 </form> 
 @endforeach
 
-<script type="text/javascript">
-    var harga_beli = document.getElementById('harga_beli');
-    harga_beli.addEventListener('keyup', function(e)
-    {
-        harga_beli.value = formatRupiah(this.value, 'Rp. ');
-    });
-    var harga_jual = document.getElementById('harga_jual');
-    harga_jual.addEventListener('keyup', function(e)
-    {
-        harga_jual.value = formatRupiah(this.value, 'Rp. ');
-    });
 
-    var harga_beli_edit = document.getElementById('harga_beli_edit');
-    harga_beli_edit.addEventListener('keyup', function(e)
-    {
-        harga_beli_edit.value = formatRupiah(this.value, 'Rp. ');
-    });
-    var harga_jual_edit = document.getElementById('harga_jual_edit');
-    harga_jual_edit.addEventListener('keyup', function(e)
-    {
-        harga_jual_edit.value = formatRupiah(this.value, 'Rp. ');
-    });
-    function formatRupiah(angka, prefix)
-    {
-        var number_string = angka.replace(/[^,\d]/g, '').toString(),
-            split    = number_string.split(','),
-            sisa     = split[0].length % 3,
-            rupiah     = split[0].substr(0, sisa),
-            ribuan     = split[0].substr(sisa).match(/\d{3}/gi);
-            
-        if (ribuan) {
-            separator = sisa ? '.' : '';
-            rupiah += separator + ribuan.join('.');
-        }
-        
-        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-        return prefix == undefined ? rupiah : (rupiah ? rupiah : '');
-    }
-    </script>
+@endsection
+
+@section('js')
+
+<script type="text/javascript">
+  var harga_beli = document.getElementById('harga_beli');
+  harga_beli.addEventListener('keyup', function(e)
+  {
+      harga_beli.value = formatRupiah(this.value, 'Rp. ');
+  });
+  var harga_jual = document.getElementById('harga_jual');
+  harga_jual.addEventListener('keyup', function(e)
+  {
+      harga_jual.value = formatRupiah(this.value, 'Rp. ');
+  });
+
+  var harga_beli_edit = document.getElementById('harga_beli_edit');
+  harga_beli_edit.addEventListener('keyup', function(e)
+  {
+      harga_beli_edit.value = formatRupiah(this.value, 'Rp. ');
+  });
+  var harga_jual_edit = document.getElementById('harga_jual_edit');
+  harga_jual_edit.addEventListener('keyup', function(e)
+  {
+      harga_jual_edit.value = formatRupiah(this.value, 'Rp. ');
+  });
+  function formatRupiah(angka, prefix)
+  {
+      var number_string = angka.replace(/[^,\d]/g, '').toString(),
+          split    = number_string.split(','),
+          sisa     = split[0].length % 3,
+          rupiah     = split[0].substr(0, sisa),
+          ribuan     = split[0].substr(sisa).match(/\d{3}/gi);
+          
+      if (ribuan) {
+          separator = sisa ? '.' : '';
+          rupiah += separator + ribuan.join('.');
+      }
+      
+      rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+      return prefix == undefined ? rupiah : (rupiah ? rupiah : '');
+  }
+  </script>
+@endsection
+
+@section('css')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 @endsection

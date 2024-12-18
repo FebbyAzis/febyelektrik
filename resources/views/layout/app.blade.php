@@ -67,7 +67,8 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data Barang</span></a>
             </li>
-            <li class="nav-item {{ request()->is('data-pelanggan*') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->is('data-pelanggan*') ? 'active' : '' }} {{ request()->is('detail-pelanggan*') ? 'active' : '' }}
+                {{ request()->is('detail-faktur-pelanggan*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/data-pelanggan') }}">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Data Pelanggan</span></a>
@@ -198,7 +199,7 @@
 
 
     <!-- Bootstrap core JavaScript-->
-    {{-- <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script> --}}
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
