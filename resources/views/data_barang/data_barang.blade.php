@@ -216,7 +216,7 @@
 @foreach ($barang as $item)
     
 
-<form action="{{url('edit-barang'. $item->id)}}" method="POST">
+<form action="{{url('edit-barang/'. $item->id)}}" method="POST">
     @csrf
     @method('PUT')
 <div class="modal fade" id="exampleModal1{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -395,11 +395,11 @@
                 </div>
                   <div class="form-group">
                     <label class="form-label" for="exampleInputText1">Harga Beli</label>
-                    <input type="text" class="form-control" id="harga_beli_edit" name="harga_beli" placeholder="..." value="{{ number_format($b->harga_beli ,0, ',', '.') }}" required>
+                    <input type="text" class="form-control" id="harga_beli_edit" name="harga_beli" placeholder="..." value="{{ number_format($item->harga_beli ,0, ',', '.') }}" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="exampleInputText1">Harga Jual</label>
-                    <input type="text" class="form-control" id="harga_jual_edit" name="harga_jual" placeholder="..." value="{{ number_format($b->harga_jual ,0, ',', '.') }}" required>
+                    <input type="text" class="form-control" id="harga_jual_edit" name="harga_jual" placeholder="..." value="{{ number_format($item->harga_jual ,0, ',', '.') }}" required>
                 </div>
                 </div>
         <div class="modal-footer">
