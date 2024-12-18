@@ -90,8 +90,4 @@ class FakturController extends Controller
         
         return response()->json([]);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> c8a1c9595469008f51273d0ce235a23f87956bad

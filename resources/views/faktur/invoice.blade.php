@@ -179,7 +179,6 @@
     <!-- /.container-fluid -->
 
 
-<<<<<<< HEAD
     <!-- Modal -->
     <form action="{{ url('/tambah-invoice') }}" method="POST">
         @csrf
@@ -269,43 +268,6 @@
                             <button type="Submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </div>
-=======
-<!-- Modal -->
-<form action="{{url('/tambah-invoice')}}" method="POST">
-    @csrf
-    @method('POST')
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Tambah Faktur</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            
-            <div class="col-md-12">
-                <input type="hidden" name="faktur_id" value="{{$faktur->id}}">
-                <div class="form-group">
-                    <label for="barang">Barang</label>
-                    <select class="form-control" id="barang" name="data_barang_id" required>
-                        <option value="">-- Pilih Barang --</option>
-                        @foreach($barang as $b)
-                            <option value="{{ $b->id }}" data-harga_jual="{{ $b->harga_jual }}">{{ $b->nama_barang }} - Rp.{{ number_format($b->harga_jual ,0, ',', '.') }}/{{ $b->qty }}</option>
-                        @endforeach
-                    </select>
-        
-                  </div>
-
-                  <div class="form-group">
-                    <label class="form-label" for="harga_jual">Harga</label>
-                    <input type="text" class="form-control" id="harga_jual" name="kuantitas" placeholder="..." required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="exampleInputText1">Kuantitas</label>
-                    <input type="text" class="form-control" id="exampleInputText1" name="kuantitas" placeholder="..." required>
->>>>>>> c8a1c9595469008f51273d0ce235a23f87956bad
                 </div>
             </div>
         </div>
@@ -491,138 +453,8 @@
                 rupiah += separator + ribuan.join('.');
             }
 
-<<<<<<< HEAD
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
             return prefix == undefined ? rupiah : (rupiah ? rupiah : '');
-=======
-@foreach ($invoice as $item)
-    
-
-<form action="{{url('edit-invoice/'. $item->id)}}" method="POST">
-    @csrf
-    @method('PUT')
-<div class="modal fade" id="exampleModal1{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Pelanggan</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            
-            <div class="col-md-12">
-              
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Barang</label>
-                    <select class="form-control" id="exampleFormControlSelect1" name="data_barang_id" required>
-                        <option value="{{$item->data_barang->id}}">{{$item->data_barang->nama_barang}} - Rp.{{ number_format($item->data_barang->harga_jual ,0, ',', '.') }}</option>
-                        @foreach($barang as $b)
-                            <option value="{{ $b->id }}">{{ $b->nama_barang }} - Rp.{{ number_format($b->harga_jual ,0, ',', '.') }}/{{ $b->qty }}</option>
-                        @endforeach
-                    </select>
-                  </div>
-                <div class="form-group">
-                    <label class="form-label" for="exampleInputText1">Kuantitas</label>
-                    <input type="text" class="form-control" id="exampleInputText1" name="kuantitas" value="{{$item->kuantitas}}" placeholder="..." required>
-                </div>
-                
-   
-                </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
-          <button type="Submit" class="btn btn-primary">Simpan</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</form>
-@endforeach
-
-@foreach ($invoice as $item)
-<form action="{{url('hapus-invoice/'. $item->id)}}" method="POST">
-    @csrf
-    @method('DELETE')
-<div class="modal fade" id="exampleModal2{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Hapus Invoice</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="col-md-12">
-                <p>Apakah anda yakin ingin menghapus invoice barang <b>{{$item->data_barang->nama_barang}}</b>?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Tidak</button>
-          <button type="Submit" class="btn btn-primary">Ya</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</form> 
-@endforeach
-
-<script>
-  $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
-</script>
-
-<script>
-  $(document).ready(function() {
-      $('#barang').on('change', function() {
-          var harga_jual = $(this).find(':selected').data('harga_jual');
-          
-          if (harga_jual) {
-              $('#harga_jual').val(harga_jual); // Mengisi harga berdasarkan produk yang dipilih
-          } else {
-              $('#harga_jual').val(''); // Kosongkan harga jika tidak ada barang yang dipilih
-          }
-      });
-  });
-</script>
-
-<script type="text/javascript">
-    var harga_beli = document.getElementById('harga_beli');
-    harga_beli.addEventListener('keyup', function(e)
-    {
-        harga_beli.value = formatRupiah(this.value, 'Rp. ');
-    });
-    var harga_jual = document.getElementById('harga_jual');
-    harga_jual.addEventListener('keyup', function(e)
-    {
-        harga_jual.value = formatRupiah(this.value, 'Rp. ');
-    });
-
-    var harga_beli_edit = document.getElementById('harga_beli_edit');
-    harga_beli_edit.addEventListener('keyup', function(e)
-    {
-        harga_beli_edit.value = formatRupiah(this.value, 'Rp. ');
-    });
-    var harga_jual_edit = document.getElementById('harga_jual_edit');
-    harga_jual_edit.addEventListener('keyup', function(e)
-    {
-        harga_jual_edit.value = formatRupiah(this.value, 'Rp. ');
-    });
-    function formatRupiah(angka, prefix)
-    {
-        var number_string = angka.replace(/[^,\d]/g, '').toString(),
-            split    = number_string.split(','),
-            sisa     = split[0].length % 3,
-            rupiah     = split[0].substr(0, sisa),
-            ribuan     = split[0].substr(sisa).match(/\d{3}/gi);
-            
-        if (ribuan) {
-            separator = sisa ? '.' : '';
-            rupiah += separator + ribuan.join('.');
->>>>>>> c8a1c9595469008f51273d0ce235a23f87956bad
         }
             });
         });
