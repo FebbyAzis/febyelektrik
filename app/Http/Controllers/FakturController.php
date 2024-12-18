@@ -42,6 +42,11 @@ class FakturController extends Controller
         $save = new Invoice;
         $save->faktur_id = $request->faktur_id; 
         $save->data_barang_id = $request->data_barang_id; 
+        $save->nama_barang = $request->nama_barang;
+        $save->qty = $request->qty;
+        $save->banyaknya = $request->banyaknya;
+        $save->harga_beli = $request->harga_beli;
+        $save->harga_jual = $request->harga_jual;
         $save->kuantitas = $request->kuantitas; 
         $save->disc = $request->disc; 
         $save->save(); 
@@ -52,8 +57,8 @@ class FakturController extends Controller
     {
 
         Invoice::where('id', $id)->update([
-            'data_barang_id' => $request->data_barang_id,
             'kuantitas' => $request->kuantitas,
+            'disc' => $request->disc,
            
         ]);
 
@@ -72,5 +77,17 @@ class FakturController extends Controller
         $invoice = invoice::where('faktur_id', $id)->get();
         $barang = Barang::all();
         return view('faktur.cetak_invoice', compact('faktur', 'invoice', 'barang'));
+    }
+
+    public function search(Request $request)
+    {
+        // Cek apakah ada input pencarian
+        if ($request->has('query')) {
+            $query = $request->input('query');
+            $products = Barang::where('nama_barang', 'like', "%{$query}%")->get();
+            return response()->json($products);
+        }
+        
+        return response()->json([]);
     }
 }

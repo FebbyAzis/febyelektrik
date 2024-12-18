@@ -237,16 +237,16 @@ hr {
                         <tbody>
                             @foreach ($invoice as $no=>$p)
                             @php
-                                $totalbanyaknya = $p->data_barang->banyaknya * $p->kuantitas;
+                                $totalbanyaknya = $p->banyaknya * $p->kuantitas;
                             @endphp
                             @php
-                            $disc = ($p->data_barang->harga_jual * $p->kuantitas) * $p->disc / 100;
+                            $disc = ($p->harga_jual * $p->kuantitas) * $p->disc / 100;
                             @endphp
                             @php
-                                $jumlah = ($p->data_barang->harga_jual * $p->kuantitas) - $disc;
+                                $jumlah = ($p->harga_jual * $p->kuantitas) - $disc;
                             @endphp
                             @php
-                                $laba = $jumlah - $p->data_barang->harga_beli * $p->kuantitas;
+                                $laba = $jumlah - $p->harga_beli * $p->kuantitas;
                             @endphp
                             
                             @php
@@ -256,9 +256,9 @@ hr {
                             @endphp  
                 <tr>
                     <td class="text-center">{{$no+1}}</td>
-                    <td class="text-left">{{$p->data_barang->nama_barang}}</td>
-                    <td class="text-right">Rp.{{ number_format($p->data_barang->harga_jual ,0, ',', '.') }}</td>
-                    <td class="text-center">{{$p->kuantitas}} {{$p->data_barang->qty}}</td>
+                    <td class="text-left">{{$p->nama_barang}}</td>
+                    <td class="text-right">Rp.{{ number_format($p->harga_jual ,0, ',', '.') }}</td>
+                    <td class="text-center">{{$p->kuantitas}} {{$p->qty}}</td>
                     <td class="text-center">{{$totalbanyaknya}}pcs</td>
                     @if ($p->disc == 0)
                                     <td class="text-center"></td>

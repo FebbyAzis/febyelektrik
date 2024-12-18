@@ -110,7 +110,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Pelanggan/Toko</label>
-                                <select class="form-control sl2" id="exampleFormControlSelect1" name="data_pelanggan_id" style="width: 100%"
+                                <select class="form-control sl2" id="exampleFormControlSelect1" name="data_pelanggan_id"
                                     required>
                                     <option value="">-- Pilih Pelanggan --</option>
                                     @foreach ($pelanggan as $pelanggan)
@@ -275,27 +275,4 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    <style>
-        .select2-container--default .select2-selection--single {
-            border: 1px solid #ced4da; /* Border default Bootstrap */
-            border-radius: 0.25rem; /* Radius border Bootstrap */
-            height: calc(2.25rem + 2px); /* Tinggi input Bootstrap */
-            padding: 0.375rem 0.75rem; /* Padding input Bootstrap */
-            background-color: #fff; /* Warna latar belakang */
-        }
-
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            line-height: 1.50rem; 
-            /* line-height: calc(2.25rem - 2px); */
-        }
-
-        .select2-container--default .select2-selection--single .select2-selection__arrow {
-            height: 100%; /* Sesuaikan tinggi panah */
-            right: 0.75rem; /* Sesuaikan posisi panah */
-        }
-
-        .select2-container--default .select2-selection--single .select2-selection__placeholder {
-            color: #6c757d; /* Warna placeholder */
-        }
-    </style>
 @endsection

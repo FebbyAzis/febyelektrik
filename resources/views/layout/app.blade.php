@@ -12,19 +12,19 @@
     <title>FEBY ELEKTRIK</title>
 
     <!-- Custom fonts for this template-->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+
+    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-       
-
-
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"> --}}
     <!-- Custom styles for this template-->
-    <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
-    <link href="{{asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
-
+    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+    @yield('css')
+    
 </head>
 
 <body id="page-top">
@@ -48,7 +48,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item {{ request()->is('/*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{url('/')}}">
+                <a class="nav-link" href="{{ url('/') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -61,30 +61,25 @@
                 Interface
             </div>
 
-            <li class="nav-item {{ request()->is('data-barang*') ? 'active' : '' }} {{ request()->is('kategori-barang*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{url('/data-barang')}}">
+            <li
+                class="nav-item {{ request()->is('data-barang*') ? 'active' : '' }} {{ request()->is('kategori-barang*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('/data-barang') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data Barang</span></a>
             </li>
             <li class="nav-item {{ request()->is('data-pelanggan*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{url('/data-pelanggan')}}">
+                <a class="nav-link" href="{{ url('/data-pelanggan') }}">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Data Pelanggan</span></a>
             </li>
-            <li class="nav-item {{ request()->is('faktur*') ? 'active' : '' }} {{ request()->is('invoice*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{url('/faktur')}}">
+            <li
+                class="nav-item {{ request()->is('faktur*') ? 'active' : '' }} {{ request()->is('invoice*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('/faktur') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Faktur</span></a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
-
+           
             <!-- Nav Item - Pages Collapse Menu -->
             {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -107,11 +102,11 @@
             </li> --}}
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
-            </li>
+            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -122,7 +117,7 @@
             </div>
 
             <!-- Sidebar Message -->
-           
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -139,14 +134,16 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-                
+
                     <!-- Topbar Search -->
-                
+
                     <!-- Topbar Navbar -->
                     <div class="col sm 12 pt-2">
-                        <p><span id="hari"></span>, <span id="tanggal"></span>&nbsp;<span id="bulan"></span>&nbsp;<span id="tahun"></span>, <span id="waktu"></span></p>
-                      </div>
-                
+                        <p><span id="hari"></span>, <span id="tanggal"></span>&nbsp;<span
+                                id="bulan"></span>&nbsp;<span id="tahun"></span>, <span id="waktu"></span>
+                        </p>
+                    </div>
+
                 </nav>
 
                 @yield('content')
@@ -195,51 +192,56 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-JobWAqYk5CSjWuVV3mxgS+MmccJqkrBaDhk8SKS1BW+71dJ9gzascwzW85UwGhxiSyR7Pxhu50k+Nl3+o5I49A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+
+
+    <!-- Bootstrap core JavaScript-->
+    {{-- <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script> --}}
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+    <!-- Page level plugins -->
+    {{-- <script src="{{ asset('vendor/chart.js') }}/Chart.min.js')}}"></script> --}}
+
+    <!-- Page level custom scripts -->
+    {{-- <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script> --}}
+    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
     <script type="text/javascript">
         function updateClock() {
             const now = new Date();
-            
-            document.getElementById('hari').textContent = now.toLocaleDateString(undefined, { weekday: 'long' });
+
+            document.getElementById('hari').textContent = now.toLocaleDateString(undefined, {
+                weekday: 'long'
+            });
             document.getElementById('tanggal').textContent = now.getDate();
-            document.getElementById('bulan').textContent = now.toLocaleDateString(undefined, { month: 'long' });
+            document.getElementById('bulan').textContent = now.toLocaleDateString(undefined, {
+                month: 'long'
+            });
             document.getElementById('tahun').textContent = now.getFullYear();
             document.getElementById('tahun1').textContent = now.getFullYear();
             document.getElementById('waktu').textContent = now.toLocaleTimeString();
         }
-  
+
         // Update waktu setiap detik
         setInterval(updateClock, 1000);
-  
+
         // Memastikan tampilan awal sudah terisi
         updateClock();
     </script>
 
-    
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
-
-    <!-- Page level plugins -->
-    <script src="{{asset('vendor/chart.js')}}/Chart.min.js')}}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
-    <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
-    
+    @yield('js')
 
 </body>
 

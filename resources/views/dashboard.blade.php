@@ -46,10 +46,10 @@
                     @endphp
                     @foreach ($invoice as $i)
                         @php
-                            $total_pengeluaran = $i->data_barang->harga_beli * $i->kuantitas;
-                            $total_pemasukan = $i->data_barang->harga_jual * $i->kuantitas;
+                            $total_pengeluaran = $i->harga_beli * $i->kuantitas;
+                            $total_pemasukan = $i->harga_jual * $i->kuantitas;
                             $total_diskon =  $total_pemasukan * $i->disc / 100;
-                            $total_laba = ($total_pemasukan - $total_diskon) - ($i->data_barang->harga_beli * $i->kuantitas);
+                            $total_laba = ($total_pemasukan - $total_diskon) - ($i->harga_beli * $i->kuantitas);
                         @endphp
                         @php
                             $total_DISC += $total_diskon;

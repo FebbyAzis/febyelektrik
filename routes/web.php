@@ -27,7 +27,7 @@ Route::get('/data-barang', [BarangController::class, 'data_barang']);
 Route::post('/tambah-barang', [BarangController::class, 'tambah_barang']);
 Route::put('/edit-barang/{id}', [BarangController::class, 'edit_barang']);
 Route::delete('/hapus-barang/{id}', [BarangController::class, 'hapus_barang']);
-Route::get('/barang/search', [BarangController::class, 'searchBarang'])->name('barang.search');
+Route::get('/barangs/search', [ProductController::class, 'search']);
 
 Route::get('/data-pelanggan', [PelangganController::class, 'data_pelanggan']);
 Route::post('/tambah-pelanggan', [PelangganController::class, 'tambah_pelanggan']);
